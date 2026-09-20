@@ -4,9 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/boot/linux/IMX6ULL/linux/alientek_linux/include", 
-                "/home/boot/linux/IMX6ULL/linux/alientek_linux/arch/arm/include", 
-                "/home/boot/linux/IMX6ULL/linux/alientek_linux/arch/arm/include/generated/"
+                "/home/boot/linux/Release_source/include", 
+                "/home/boot/linux/Release_source/arch/arm/include", 
+                "/home/boot/linux/Release_source/arch/arm/include/generated/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
