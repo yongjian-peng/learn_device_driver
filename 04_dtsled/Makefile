@@ -4,7 +4,7 @@ ARCH := arm
 CROSS_COMPILE := /usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 CURRENT_PATH := $(shell pwd)
 
-obj-m := newchrled.o
+obj-m := dtsled.o
 
 build: kernel_modules
 
