@@ -17,32 +17,34 @@ Copyright © ALIENTEK Co., Ltd. 1998-2029. All rights reserved.
 论坛 	   	: www.openedv.com
 日志	   	: 初版V1.0 2026/09/28 pyj创建
 ***************************************************************/
+
 #define LEDOFF  0
 #define LEDON   1
 
 /**
  * @description   : main 主程序
  * @param - argc  : argc 数组元素个数
- * @param - argv  : argv 具体参数
- * @return        : 0 成功； 其他 失败
+ * @parma - argv  : argv 具体参数
+ * @return        : 0 成功; 其他失败
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv)
 {
 	int fd, retvalue;
 	char *filename;
 	unsigned char databuf[1];
 
-	if (argc != 3) {
-		printf("Error Usage!\r\n");
+	if(argc != 3)
+	{
+		print("Error Usage!\r\n");
 		return -1;
 	}
 
-	filename = argc[1];
+	filename = argv[1];
 
-	/* 打开led 驱动 */
+	/* 打开 LED 驱动 */
 	fd = open(filename, O_RDWR);
 	if (fd < 0) {
-		printf("file %s open failed!\r\n", argv[1]);
+		print("file %s open failed!\r\n", argv[1]);
 		return -1;
 	}
 
@@ -50,15 +52,15 @@ int main(int argc, char *argv[])
 
 	/* 向 /dev/led 文件写入数据 */
 	retvalue = write(fd, databuf, sizeof(databuf));
-	if (retvalue < 0) {
-		printf("LED Control Failed!\r\n");
+	if(retvalue < 0) {
+		print("LED Control Failed!\r\n");
 		close(fd);
 		return -1;
 	}
 
-	retvalue = close(fd); /* 关闭文件 */
+	retvalue = close(fd);  /* 关闭文件 */
 	if (retvalue < 0) {
-		printf("file %s close failed!\r\n", argv[1]);
+		print("file %s close failed!\r\n", argv[1]);
 		return -1;
 	}
 
