@@ -1,3 +1,4 @@
+#KERNELDIR := /home/boot/linux/IMX6ULL/linux/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek
 KERNELDIR := /home/boot/linux/Release_source
 
 ARCH := arm

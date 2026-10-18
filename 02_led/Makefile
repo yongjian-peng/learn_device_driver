@@ -1,5 +1,5 @@
+#KERNELDIR := /home/boot/linux/driver/learn_device_driver
 KERNELDIR := /home/boot/linux/Release_source
-
 ARCH := arm
 CROSS_COMPILE := /usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 CURRENT_PATH := $(shell pwd)

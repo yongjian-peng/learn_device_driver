@@ -43,7 +43,7 @@ struct dtsled_dev {
     struct class *class;      /* class 类 */
     struct device *device;    /* 设备 */
     int major;                /* 主设备号 */
-    int minor                 /* 次设备号 */
+    int minor;                /* 次设备号 */
     struct device_node *nd;   /* 设备节点 */
 };
 
