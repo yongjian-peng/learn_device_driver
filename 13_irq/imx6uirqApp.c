@@ -9,13 +9,13 @@
 /***************************************************************
 Copyright © ALIENTEK Co., Ltd. 1998-2029. All rights reserved.
 文件名		: imx6uirqApp.c
-作者	  	: 左忠凯
+作者	  	: pyj
 版本	   	: V1.0
 描述	   	: 定时器测试应用程序
 其他	   	: 无
 使用方法	：./imx6uirqApp /dev/imx6uirq 打开测试App
 论坛 	   	: www.openedv.com
-日志	   	: 初版V1.0 2019/7/26 左忠凯创建
+日志	   	: 初版V1.0 2026/11/02 pyj创建
 ***************************************************************/
 
 /*
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	int ret = 0;
 	char *filename;
 	unsigned char data;
-	
+
 	if (argc != 2) {
 		printf("Error Usage!\r\n");
 		return -1;
@@ -39,17 +39,17 @@ int main(int argc, char *argv[])
 	filename = argv[1];
 	fd = open(filename, O_RDWR);
 	if (fd < 0) {
-		printf("Can't open file %s\r\n", filename);
+		printf("Can't open file %s\r\n", argv[1]);
 		return -1;
 	}
 
 	while (1) {
 		ret = read(fd, &data, sizeof(data));
-		if (ret < 0) {  /* 数据读取错误或者无效 */
-			
-		} else {		/* 数据读取正确 */
-			if (data)	/* 读取到数据 */
-				printf("key value = %#X\r\n", data);
+		if (ret < 0) { /* 数据读取错误或者失效 */
+
+		} else {       /* 数据读取正确 */
+			if (data)  /* 读取到数据 */
+				printf("key value = %#X\r\n",data);
 		}
 	}
 	close(fd);
