@@ -12,13 +12,13 @@
 /***************************************************************
 Copyright © ALIENTEK Co., Ltd. 1998-2029. All rights reserved.
 文件名		: noblockApp.c
-作者	  	: 左忠凯
+作者	  	: pyj
 版本	   	: V1.0
 描述	   	: 非阻塞访问测试APP
 其他	   	: 无
 使用方法	：./blockApp /dev/blockio 打开测试App
 论坛 	   	: www.openedv.com
-日志	   	: 初版V1.0 2019/9/8 左忠凯创建
+日志	   	: 初版V1.0 202611/20 pyj创建
 ***************************************************************/
 
 /*
@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
 	}
 
 	filename = argv[1];
-	fd = open(filename, O_RDWR | O_NONBLOCK);	/* 非阻塞访问 */
+	fd = open(filename, O_RDWR | O_NONBLOCK);  /* 非阻塞访问 */
 	if (fd < 0) {
-		printf("Can't open file %s\r\n", filename);
+		printf("can't open file %s\r\n", filename);
 		return -1;
 	}
 
@@ -53,37 +53,37 @@ int main(int argc, char *argv[])
 	/* 构造结构体 */
 	fds.fd = fd;
 	fds.events = POLLIN;
-		
+
 	while (1) {
 		ret = poll(&fds, 1, 500);
-		if (ret) {	/* 数据有效 */
+		if (ret) { /* 数据有效 */
 			ret = read(fd, &data, sizeof(data));
-			if(ret < 0) {
+			if (ret < 0) {
 				/* 读取错误 */
 			} else {
-				if(data)
+				if (data)
 					printf("key value = %d \r\n", data);
-			} 	
-		} else if (ret == 0) { 	/* 超时 */
-			/* 用户自定义超时处理 */
-		} else if (ret < 0) {	/* 错误 */
+			}
+		} else if (ret == 0) { /* 超时 */
+			/* 用户自定义 */
+		} else if (ret < 0) {  /* 错误 */
 			/* 用户自定义错误处理 */
 		}
 	}
 #endif
 
-	while (1) {	
-		FD_ZERO(&readfds);
-		FD_SET(fd, &readfds);
+	while(1) {
+		PD_ZERO(&readfds);
+		PD_SET(fd, &readfds);
 		/* 构造超时时间 */
 		timeout.tv_sec = 0;
-		timeout.tv_usec = 500000; /* 500ms */
+		timeout.tv_usec = 500000;  /* 500ms */
 		ret = select(fd + 1, &readfds, NULL, NULL, &timeout);
 		switch (ret) {
-			case 0: 	/* 超时 */
+			case 0: /* 超时 */
 				/* 用户自定义超时处理 */
 				break;
-			case -1:	/* 错误 */
+			case -1:
 				/* 用户自定义错误处理 */
 				break;
 			default:  /* 可以读取数据 */
@@ -93,13 +93,12 @@ int main(int argc, char *argv[])
 						/* 读取错误 */
 					} else {
 						if (data)
-							printf("key value=%d\r\n", data);
+							printf("key value =%d\r\n", data);
 					}
 				}
 				break;
-		}	
+		}
 	}
-
 	close(fd);
 	return ret;
 }
