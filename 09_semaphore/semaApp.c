@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
 	filename = argv[1];
 
-	/* 打开led驱动 */
+	/* 打开beep驱动 */
 	fd = open(filename, O_RDWR);
 	if(fd < 0){
 		printf("file %s open failed!\r\n", argv[1]);
